@@ -23,6 +23,15 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mouseup', () => (isDrawing = false))
 canvas.addEventListener('mouseout', () => (isDrawing = false))
 
+// for touch screens
+canvas.addEventListener('touchmove', draw)
+canvas.addEventListener('touchdown', (e) => {
+  isDrawing = true
+  lastX = e.offsetX
+  lastY = e.offsetY
+})
+canvas.addEventListener('touchup', () => (isDrawing = false))
+
 function draw(e) {
   if (!isDrawing) return
   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
