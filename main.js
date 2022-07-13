@@ -14,14 +14,14 @@ let lastY = 0
 let hue = 0
 // let direction = true
 
-canvas.addEventListener('mousemove', draw)
-canvas.addEventListener('mousedown', (e) => {
+canvas.addEventListener('pointermove', draw)
+canvas.addEventListener('pointerdown', (e) => {
   isDrawing = true
   lastX = e.offsetX
   lastY = e.offsetY
 })
-canvas.addEventListener('mouseup', () => (isDrawing = false))
-canvas.addEventListener('mouseout', () => (isDrawing = false))
+canvas.addEventListener('pointerup', () => (isDrawing = false))
+canvas.addEventListener('pointerout', () => (isDrawing = false))
 
 function draw(e) {
   if (!isDrawing) return
@@ -49,12 +49,11 @@ function draw(e) {
 }
 
 // button functionality
-document.querySelector('.btn-normal').onclick = function () {
-  ctx.globalCompositeOperation = 'source-over'
-}
-document.querySelector('.btn-erase').onclick = function () {
-  ctx.globalCompositeOperation = 'destination-out'
-}
-document.querySelector('.btn-xor').onclick = function () {
-  ctx.globalCompositeOperation = 'xor'
-}
+const btn1 = document.querySelector('.btn-fancy')
+
+const btn2 = document.querySelector('.btn-reset')
+
+btn1.addEventListener('click', () => (ctx.globalCompositeOperation = 'xor'))
+btn2.addEventListener('click', () => {
+  window.location.reload()
+})
